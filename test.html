@@ -1,0 +1,21 @@
+<html>
+<head>
+  <title>Test canvas</title>
+  <script src="./ukechord.js"></script>
+  <script type="text/javascript">
+  function doit() {
+    chord("chord1").init([1,3,4,3],'G#');
+    chord("chord2").init([0,1,2,1],'G7');
+  }
+
+</script>
+</head>
+<body onload="doit()">
+  <canvas id="chord1" width="80" height="140">
+  Texte alternatif pour les navigateurs ne supportant pas Canvas.
+</canvas>
+<canvas id="chord2" width="80" height="140">
+Texte alternatif pour les navigateurs ne supportant pas Canvas.
+</canvas>
+</body>
+</html>
