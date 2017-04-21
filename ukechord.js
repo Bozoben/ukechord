@@ -1,3 +1,5 @@
+const chordsList = {"G7":"0212","C":"0003","Cm":"0333"};
+
 var chord = function(elementId, settings) {
   const x0 = 8;
   const w0 = 20;
@@ -11,17 +13,42 @@ var chord = function(elementId, settings) {
     return res;
   }
 
+  function drawX(j) {
+    ctx.beginPath();
+    ctx.fillStyle = "blue";
+    ctx.font = "10pt Verdana";
+    ctx.fillText('x',4 + (j-1) * 20, 14);
+    ctx.closePath();
+  }
+
+  /**
+     Marque une note. i = numero corde, j = position.
+     Si j == 'x' on marque x en haut de corde.
+     Si j == '0' on marque un rond vide en haut de corde.
+  **/
   function drawNote(i,j) {
+    // Corde à ne pas jouer
+    if (j =='x') {
+        drawX(i);
+        return;
+    }
+
    ctx.beginPath();
    ctx.strokeStyle = "#369";
    ctx.fillStyle="#c00";
    var center = getCenter(i,j);
-   ctx.arc(center[0],center[1],6,0,Math.PI*2,false);
-   ctx.fill();
+   // Corde vide : rond vide
+   if (j == '0') {
+     ctx.arc(center[0],center[1],4,0,Math.PI*2,false);
+     ctx.stroke();
+   } else { // Une note à marquer : rond plein
+     ctx.arc(center[0],center[1],6,0,Math.PI*2,false);
+     ctx.fill();
+   }
    ctx.closePath();
   }
 
-  function writeChord(txt) {
+  function writeChordLabel(txt) {
    ctx.beginPath();
    ctx.fillStyle = "blue";
    ctx.font = "12pt Verdana";
@@ -50,16 +77,26 @@ var chord = function(elementId, settings) {
   }
 
   function init(positions,note) {
-
     drawGrid();
-
-    writeChord(note);
+    writeChordLabel(note);
     for (var i=0; i < 4; i++) {
       drawNote(i+1,positions[i]);
     }
   }
 
+  function initFromList(note) {
+    var chordData = chordsList[note];
+    drawGrid();
+    writeChordLabel(note);
+    if (chordData != null) {
+      for (var i=0; i < 4; i++) {
+        drawNote(i+1,chordData.charAt(i));
+      }
+    }
+  }
+
   return {
-    init: init
+    init: init,
+    initFromList: initFromList
   };
 };
