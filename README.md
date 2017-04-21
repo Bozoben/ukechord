@@ -20,7 +20,10 @@ chord("chord2").initFromListe('G7');
 ```
 Dans ce cas, un seul paramètre, l'identifiant de l'accord.
 
+Identifiants supportés : C,Db,D,Eb,E,F,Gb,G,Ab,A,Bb,
+Et : Db,Db7,Dbm,Dbm7,Dbdim,Dbaug,Db6,DbM7,Db9
+
+****
 Todos :
 * ajouter la position du manche
-* préparer une bibliothèque d'accords
 * avoir plusieurs tailles (xsmall, small, medium)
