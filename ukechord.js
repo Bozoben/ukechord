@@ -54,7 +54,7 @@ var chord = function(elementId, settings) {
     drawGrid();
 
     writeChord(note);
-    for (var i=0; i < 4, i++) {
+    for (var i=0; i < 4; i++) {
       drawNote(i+1,positions[i]);
     }
   }
