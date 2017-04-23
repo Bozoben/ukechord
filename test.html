@@ -3,23 +3,52 @@
   <title>Test canvas</title>
   <script src="./ukechord.js"></script>
   <script type="text/javascript">
-  function doit() {
-    chord("chord1").init(['x',3,4,3],'G#');
-    chord("chord2").initFromList('G7');
-    chord("chord3").initFromList('Bb');    
-  }
 
+  function changeChord() {
+    var tonalite = document.forms[0].tonalite;
+    var accord = document.forms[0].accord;
+    if (tonalite.selectedIndex >= 0) {
+      zeAccord = tonalite.options[tonalite.selectedIndex].value;
+      if (accord.selectedIndex >=0) {
+        zeAccord += accord.options[accord.selectedIndex].value;
+      }
+      chord("chord1").initFromList(zeAccord);
+    }
+  }
 </script>
 </head>
-<body onload="doit()">
+<body>
+  <form>
+  <label for="tonalite">Tonalit&acute;</label>
+  <select name="tonalite" onchange="changeChord()">
+  <option value="C">C</option>
+  <option value="Db">Db</option>
+  <option value="D">D</option>
+  <option value="Eb">Eb</option>
+  <option value="E">E</option>
+  <option value="F">F</option>
+  <option value="Gb">Gb</option>
+  <option value="G">G</option>
+  <option value="Ab">Ab</option>
+  <option value="A">A</option>
+  <option value="Bb">Bb</option>
+  <option value="B">B</option>
+</select>
+  <label>Accord</label>
+  <select name="accord" onchange="changeChord()">
+  <option value="">Majeur</option>
+  <option value="7">7</option>
+  <option value="m">Mineur</option>
+  <option value="m7">Mineur7</option>
+  <option value="dim">dim</option>
+  <option value="aug">aug</option>
+  <option value="6">6</option>
+  <option value="M7">Maj7</option>
+  <option value="9">9</option>
+</select>
+</form>
   <canvas id="chord1" width="80" height="140">
   Texte alternatif pour les navigateurs ne supportant pas Canvas.
-</canvas>
-<canvas id="chord2" width="80" height="140">
-Texte alternatif pour les navigateurs ne supportant pas Canvas.
-</canvas>
-<canvas id="chord3" width="80" height="140">
-Texte alternatif pour les navigateurs ne supportant pas Canvas.
 </canvas>
 </body>
 </html>

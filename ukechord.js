@@ -55,7 +55,7 @@ var chord = function(elementId, settings) {
   }
 
   function drawGrid() {
-    // Le reste du script ici...
+    ctx.clearRect(0, 0, c.width, c.height);
     ctx.lineWidth=1;
     ctx.strokeStyle="black";
     ctx.beginPath();      // Début du chemin
