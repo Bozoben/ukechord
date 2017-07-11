@@ -1,14 +1,16 @@
 var chord = function(elementId, settings) {
-  const x0 = 8;
-  const w0 = 20;
-  const paddingTop = 10;
+  const x0 = 8; // Debut de grille (x)
+  const y0 = 20; // Largeur frette (y)
+  const w0 = 20; // Largeur entre chaque corde
+  const paddingTop = 10; // Espace vertical avant debut de grille
+
   var c = document.getElementById(elementId);
   var ctx = c.getContext("2d");
 
   function getCenter(i,j) {
     var res = new Array();
-    res[0] = 8 + (i-1) * 20;
-    res[1] = 10 + j * 20 + paddingTop;
+    res[0] = 8 + (i-1) * w0;
+    res[1] = 10 + j * y0 + paddingTop;
     return res;
   }
 
@@ -16,7 +18,7 @@ var chord = function(elementId, settings) {
     ctx.beginPath();
     ctx.fillStyle = "blue";
     ctx.font = "10pt Verdana";
-    ctx.fillText('x',4 + (j-1) * 20, 14 + paddingTop);
+    ctx.fillText('x',4 + (j-1) * w0, 14 + paddingTop);
     ctx.closePath();
   }
 
@@ -61,17 +63,17 @@ var chord = function(elementId, settings) {
     ctx.strokeStyle="black";
     ctx.fillStyle="black";
     ctx.beginPath();      // Début du chemin
-    // Lignes horizontables
+    // Lignes verticales
     for (var i=0; i < 4; i++) {
-      ctx.moveTo(x0 + i * w0,20 + paddingTop);
-      ctx.lineTo(x0 + i * w0,100 + paddingTop);
+      ctx.moveTo(x0 + i * w0, y0 + paddingTop);
+      ctx.lineTo(x0 + i * w0, y0*5 + paddingTop);
     }
-
-    ctx.fillRect(x0 - 1,16 + paddingTop, x0 + 3 * w0 - 6 ,4);
-
+    // Double ligne horizontale en haut de manche
+    ctx.fillRect(x0 - 1,y0 + paddingTop - 4, x0 + 3 * w0 - 6 ,4);
+    // Lignes horizontales
     for (var i=0; i < 5; i++) {
-      ctx.moveTo(x0, (i+1) * w0 + paddingTop);
-      ctx.lineTo(x0 + 3*w0, (i+1) * w0 + paddingTop);
+      ctx.moveTo(x0, (i+1) * y0 + paddingTop);
+      ctx.lineTo(x0 + 3*w0, (i+1) * y0 + paddingTop);
     }
     ctx.closePath();
     ctx.stroke();
