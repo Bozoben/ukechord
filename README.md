@@ -25,5 +25,6 @@ Et : Db,Db7,Dbm,Dbm7,Dbdim,Dbaug,Db6,DbM7,Db9
 
 ****
 Todos :
-* ajouter la position du manche
+* gerer les accords dont la position est > frette 4 (EMaj7 par exemple) : afficher position du manche + repositionner
+* Fix label mal placé
 * avoir plusieurs tailles (xsmall, small, medium)

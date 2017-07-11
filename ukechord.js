@@ -1,13 +1,14 @@
 var chord = function(elementId, settings) {
   const x0 = 8;
   const w0 = 20;
+  const paddingTop = 10;
   var c = document.getElementById(elementId);
   var ctx = c.getContext("2d");
 
   function getCenter(i,j) {
     var res = new Array();
     res[0] = 8 + (i-1) * 20;
-    res[1] = 10 + j * 20;
+    res[1] = 10 + j * 20 + paddingTop;
     return res;
   }
 
@@ -15,7 +16,7 @@ var chord = function(elementId, settings) {
     ctx.beginPath();
     ctx.fillStyle = "blue";
     ctx.font = "10pt Verdana";
-    ctx.fillText('x',4 + (j-1) * 20, 14);
+    ctx.fillText('x',4 + (j-1) * 20, 14 + paddingTop);
     ctx.closePath();
   }
 
@@ -50,7 +51,7 @@ var chord = function(elementId, settings) {
    ctx.beginPath();
    ctx.fillStyle = "blue";
    ctx.font = "12pt Verdana";
-   ctx.fillText(txt, 20, 12);
+   ctx.fillText(txt, w0, 2 + paddingTop);
    ctx.closePath();
   }
 
@@ -58,17 +59,19 @@ var chord = function(elementId, settings) {
     ctx.clearRect(0, 0, c.width, c.height);
     ctx.lineWidth=1;
     ctx.strokeStyle="black";
+    ctx.fillStyle="black";
     ctx.beginPath();      // Début du chemin
     // Lignes horizontables
     for (var i=0; i < 4; i++) {
-      ctx.moveTo(x0 + i * w0,20);
-      ctx.lineTo(x0 + i * w0,100);
+      ctx.moveTo(x0 + i * w0,20 + paddingTop);
+      ctx.lineTo(x0 + i * w0,100 + paddingTop);
     }
-    ctx.fillRect(x0 - 1,16, x0 + 3 * w0 - 6 ,4);
+
+    ctx.fillRect(x0 - 1,16 + paddingTop, x0 + 3 * w0 - 6 ,4);
 
     for (var i=0; i < 5; i++) {
-      ctx.moveTo(x0, (i+1) * w0);
-      ctx.lineTo(x0 + 3*w0, (i+1) * w0);
+      ctx.moveTo(x0, (i+1) * w0 + paddingTop);
+      ctx.lineTo(x0 + 3*w0, (i+1) * w0 + paddingTop);
     }
     ctx.closePath();
     ctx.stroke();
